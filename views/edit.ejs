@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Post</title>
+    <link rel="stylesheet" href="/stylesheets/style.css"/>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <div class="main w-full min-h-screen bg-zinc-900 p-10 text-white">
+        <div class="nav mb-10 flex justify-between">
+            <a class="bg-orange-500 rounded-md px-3 py-2 text-sm mb-5 initial-block" href="/">🏠 Home</a>
+            <a class="bg-red-500 rounded-md px-3 py-2 text-sm mb-5 initial-block" href="/logout">🚪 Logout</a>
+        </div>
+        
+        <h1 class="text-3xl tracking-tighter mb-5">✍️ Edit Post</h1>
+
+        <div class="edit-post mb-5">
+            <form action="/edit/<%= post._id %>" method="post">
+                <textarea class="px-5 py-2 border-2 border-zinc-800 bg-black rounded-lg w-full mb-3" name="content" placeholder="Post Content 📝"><%= post.content %></textarea>
+                <input class="px-5 py-2 bg-yellow-600 rounded-lg" type="submit" value="📤 Update Post">
+            </form>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Posts</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 text-white font-sans">
+    <div class="container mx-auto p-8 min-h-screen">
+        <!-- Navbar -->
+        <div class="mb-8 flex justify-between items-center">
+            <a class="bg-orange-500 rounded-md px-3 py-2 text-xs font-semibold hover:bg-orange-600 transition duration-300" href="/">🏠 Home</a>
+            <a class="bg-red-500 rounded-md px-3 py-2 text-xs font-semibold hover:bg-red-600 transition duration-300" href="/logout">🚪 Logout</a>
+        </div>
+
+        <!-- Heading -->
+        <h1 class="text-4xl font-bold mb-6">📝 All User Posts</h1>
+
+        <!-- Posts Section -->
+        <div class="posts-section">
+            <% if (allPosts.length > 0) { %>
+                <% allPosts.forEach(function(post) { %>
+                    <div class="post w-full bg-gray-800 p-6 mb-6 rounded-lg shadow-lg">
+                        <div class="flex items-center mb-4">
+                            <img class="w-10 h-10 rounded-full mr-4" src="<%= post.user.profileImage ? post.user.profileImage : 'https://th.bing.com/th/id/OIG2.9O4YqGf98tiYzjKDvg7L' %>" alt="User Image">
+                            <div>
+                                <h2 class="text-xl font-semibold"><%= post.user.name %></h2>
+                            </div>
+                        </div>
+                        <p class="text-base mb-4">📄 <%= post.content %></p>
+                        <small class="text-sm text-gray-400"><%= post.likes.length %> likes</small>
+                        <div class="flex gap-4 mt-4">
+                            <a class="px-4 py-2 bg-yellow-500 rounded-lg text-xs font-semibold hover:bg-yellow-600 transition duration-300" href="/like/<%= post._id %>">
+                                <%= post.likes.indexOf(user.userid) === -1 ? "Like" : "Unlike" %>
+                            </a>
+                            <a class="px-4 py-2 bg-blue-500 rounded-lg text-xs font-semibold hover:bg-blue-600 transition duration-300" href="/comment/<%= post._id %>">Comment</a>
+                        </div>
+                    </div>
+                <% }); %>
+            <% } else { %>
+                <p class="text-center text-gray-400">😔 No posts available yet.</p>
+            <% } %>
+        </div>
+    </div>
+</body>
+</html>
